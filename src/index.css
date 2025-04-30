@@ -7,17 +7,17 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 0 0% 0%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
+    --card: 0 0% 0%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 11%;
+    --popover: 0 0% 0%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 199 89% 57%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 0%;
 
     --secondary: 217 33% 18%;
     --secondary-foreground: 210 40% 98%;
@@ -43,6 +43,8 @@
     --sidebar-accent-foreground: 240 5% 96%;
     --sidebar-border: 240 4% 16%;
     --sidebar-ring: 217 91% 60%;
+
+    --radius: 1.5rem;
   }
 
   .light {
@@ -74,7 +76,7 @@
     --input: 214 32% 91%;
     --ring: 199 89% 57%;
 
-    --radius: 0.5rem;
+    --radius: 1.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5% 26%;
@@ -93,21 +95,22 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-black text-foreground font-sans;
+    background: #000;
   }
 
   .glass-effect {
-    @apply bg-black/40 backdrop-blur-lg border border-white/10 shadow-lg;
+    @apply bg-black/60 backdrop-blur-lg border border-white/10 shadow-lg rounded-2xl transition-all duration-300 hover:bg-black/70;
   }
   
   .glass-card {
-    @apply bg-black/30 backdrop-blur-md border border-white/10 shadow-lg rounded-xl;
+    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-lg rounded-2xl transition-all duration-300 hover:shadow-primary/10;
   }
 }
 
 @layer components {
   .input-container {
-    @apply relative rounded-md shadow-sm;
+    @apply relative rounded-full shadow-sm;
   }
   
   .pricing-card {
@@ -117,5 +120,32 @@
   .pricing-feature {
     @apply flex items-center gap-2 text-sm text-gray-300 my-1;
   }
+
+  .btn-glow {
+    @apply relative overflow-hidden rounded-full transition-all duration-300;
+  }
+
+  .btn-glow:hover::before {
+    @apply content-[''] absolute inset-0 bg-primary/20 blur-xl -z-10;
+  }
+
+  .text-shimmer {
+    @apply bg-gradient-to-r from-white via-primary to-white bg-clip-text text-transparent bg-[length:200%_100%];
+    animation: shimmer 6s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}

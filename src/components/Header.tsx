@@ -15,8 +15,8 @@ const Header = () => {
   return (
     <header className="w-full py-4 glass-effect sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
-        <Link to="/" className="flex items-center">
-          <div className="flex items-center">
+        <Link to="/" className="flex items-center group">
+          <div className="flex items-center transition-transform duration-300 group-hover:scale-105">
             <Mic className="w-6 h-6 text-primary mr-1" />
             <h1 className="text-2xl font-bold">
               Pod<span className="text-primary">Bite</span>
@@ -27,16 +27,16 @@ const Header = () => {
           </div>
         </Link>
         
-        <nav className="hidden md:flex space-x-4">
-          <Link to="/pricing" className="text-gray-300 hover:text-primary">Pricing</Link>
-          <Link to="/about" className="text-gray-300 hover:text-primary">About</Link>
-          <Link to="/help" className="text-gray-300 hover:text-primary">Help</Link>
+        <nav className="hidden md:flex space-x-6">
+          <Link to="/pricing" className="text-gray-300 hover:text-primary transition-colors duration-300">Pricing</Link>
+          <Link to="/about" className="text-gray-300 hover:text-primary transition-colors duration-300">About</Link>
+          <Link to="/help" className="text-gray-300 hover:text-primary transition-colors duration-300">Help</Link>
         </nav>
         
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
-            className="border-primary text-primary hidden md:flex hover:bg-primary hover:text-background rounded-full transition-colors"
+            className="border-primary text-primary hidden md:flex hover:bg-primary hover:text-background rounded-full transition-all duration-300 hover:scale-105 btn-glow"
             asChild
           >
             <Link to="/login">Login</Link>
@@ -44,16 +44,16 @@ const Header = () => {
           
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="outline" size="icon" className="rounded-full">
+              <Button variant="outline" size="icon" className="rounded-full hover:bg-primary/20">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent className="glass-effect">
+            <SheetContent className="glass-effect border-none">
               <div className="flex flex-col space-y-4 mt-8">
-                <Link to="/pricing" className="text-gray-300 hover:text-primary text-lg py-2">Pricing</Link>
-                <Link to="/about" className="text-gray-300 hover:text-primary text-lg py-2">About</Link>
-                <Link to="/help" className="text-gray-300 hover:text-primary text-lg py-2">Help</Link>
-                <Link to="/login" className="text-gray-300 hover:text-primary text-lg py-2">Login</Link>
+                <Link to="/pricing" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">Pricing</Link>
+                <Link to="/about" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">About</Link>
+                <Link to="/help" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">Help</Link>
+                <Link to="/login" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">Login</Link>
               </div>
             </SheetContent>
           </Sheet>

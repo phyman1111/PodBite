@@ -26,18 +26,20 @@ const App = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/pricing" element={<PricingPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/help" element={<HelpPage />} />
-              <Route path="/terms" element={<TermsPage />} />
-              <Route path="/privacy" element={<PrivacyPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <div className="min-h-screen bg-black">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/help" element={<HelpPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
           </TooltipProvider>
         </QueryClientProvider>
       </BrowserRouter>

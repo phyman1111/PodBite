@@ -42,25 +42,25 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0')] bg-cover bg-center opacity-10 pointer-events-none"></div>
+    <div className="min-h-screen flex flex-col bg-black">
+      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0')] bg-cover bg-center opacity-5 pointer-events-none"></div>
       
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-10 flex items-center justify-center">
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
+          <div className="text-center mb-8 animate-fade-in">
+            <h1 className="text-3xl font-bold text-shimmer mb-2">Welcome Back</h1>
             <p className="text-gray-400">
               Sign in to your PodBite account to access premium features
             </p>
           </div>
           
-          <div className="glass-card p-6">
+          <div className="glass-card p-6 animate-fade-in">
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6 bg-black/50">
-                <TabsTrigger value="login" className="data-[state=active]:bg-primary data-[state=active]:text-background">Login</TabsTrigger>
-                <TabsTrigger value="signup" className="data-[state=active]:bg-primary data-[state=active]:text-background">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 mb-6 bg-black/50 rounded-full overflow-hidden">
+                <TabsTrigger value="login" className="data-[state=active]:bg-primary data-[state=active]:text-background rounded-full transition-all duration-300">Login</TabsTrigger>
+                <TabsTrigger value="signup" className="data-[state=active]:bg-primary data-[state=active]:text-background rounded-full transition-all duration-300">Sign Up</TabsTrigger>
               </TabsList>
               
               <TabsContent value="login">
@@ -76,7 +76,7 @@ const LoginPage = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-black/50 border-gray-700 text-white"
+                      className="w-full bg-black/50 border-gray-700 text-white rounded-full focus:ring-primary focus:border-primary transition-all duration-300"
                     />
                   </div>
                   
@@ -91,19 +91,19 @@ const LoginPage = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full bg-black/50 border-gray-700 text-white"
+                      className="w-full bg-black/50 border-gray-700 text-white rounded-full focus:ring-primary focus:border-primary transition-all duration-300"
                     />
                   </div>
                   
                   <div className="flex justify-end">
-                    <a href="#" className="text-sm text-primary hover:underline">
+                    <a href="#" className="text-sm text-primary hover:underline hover:text-primary/80 transition-colors duration-300">
                       Forgot password?
                     </a>
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-primary text-background hover:bg-primary/80 rounded-full"
+                    className="w-full bg-primary text-background hover:bg-primary/80 btn-glow"
                     disabled={isLoading}
                   >
                     {isLoading ? (
@@ -132,7 +132,7 @@ const LoginPage = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full bg-black/50 border-gray-700 text-white"
+                      className="w-full bg-black/50 border-gray-700 text-white rounded-full focus:ring-primary focus:border-primary transition-all duration-300"
                     />
                   </div>
                   
@@ -147,7 +147,7 @@ const LoginPage = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-black/50 border-gray-700 text-white"
+                      className="w-full bg-black/50 border-gray-700 text-white rounded-full focus:ring-primary focus:border-primary transition-all duration-300"
                     />
                   </div>
                   
@@ -162,7 +162,7 @@ const LoginPage = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full bg-black/50 border-gray-700 text-white"
+                      className="w-full bg-black/50 border-gray-700 text-white rounded-full focus:ring-primary focus:border-primary transition-all duration-300"
                     />
                     <p className="text-xs text-gray-400 mt-1">
                       Password must be at least 8 characters long
@@ -171,7 +171,7 @@ const LoginPage = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-primary text-background hover:bg-primary/80 rounded-full"
+                    className="w-full bg-primary text-background hover:bg-primary/80 btn-glow"
                     disabled={isLoading}
                   >
                     {isLoading ? (
@@ -191,9 +191,9 @@ const LoginPage = () => {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-400">
                 By signing up, you agree to our{' '}
-                <a href="/terms" className="text-primary hover:underline">Terms of Service</a>{' '}
+                <a href="/terms" className="text-primary hover:underline transition-colors duration-300">Terms of Service</a>{' '}
                 and{' '}
-                <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
+                <a href="/privacy" className="text-primary hover:underline transition-colors duration-300">Privacy Policy</a>
               </p>
             </div>
           </div>

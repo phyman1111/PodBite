@@ -28,15 +28,15 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
   
   if (!clipData) {
     return (
-      <div className="w-full glass-card p-6 flex flex-col items-center justify-center min-h-[400px]">
+      <div className="w-full glass-card p-6 flex flex-col items-center justify-center min-h-[400px] animate-fade-in">
         <div className="text-center space-y-4">
           <div className="bg-primary/20 p-4 rounded-full inline-flex items-center justify-center">
-            <Play className="w-10 h-10 text-primary" />
+            <Play className="w-10 h-10 text-primary animate-pulse-soft" />
           </div>
-          <h3 className="text-xl font-semibold text-white">Your clip will appear here</h3>
-          <p className="text-gray-400 max-w-md">
-            Enter a URL and prompt above to generate your first clip
-          </p>
+          <div className="space-y-2 animate-fade-in">
+            <div className="h-2 w-24 bg-white/10 rounded-full mx-auto"></div>
+            <div className="h-2 w-32 bg-white/5 rounded-full mx-auto"></div>
+          </div>
         </div>
       </div>
     );
@@ -67,9 +67,9 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
       <h2 className="text-xl font-semibold mb-4 text-white">Your Clip</h2>
       
       <Tabs defaultValue="preview" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-4 bg-black/50">
-          <TabsTrigger value="preview" className="data-[state=active]:bg-primary data-[state=active]:text-background">Preview</TabsTrigger>
-          <TabsTrigger value="export" className="data-[state=active]:bg-primary data-[state=active]:text-background">Export & Share</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 mb-4 bg-black/50 rounded-full">
+          <TabsTrigger value="preview" className="data-[state=active]:bg-primary data-[state=active]:text-background rounded-full">Preview</TabsTrigger>
+          <TabsTrigger value="export" className="data-[state=active]:bg-primary data-[state=active]:text-background rounded-full">Export & Share</TabsTrigger>
         </TabsList>
         
         <TabsContent value="preview" className="space-y-4">
@@ -79,7 +79,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                 variant={aspectRatio === "16:9" ? "default" : "outline"} 
                 size="sm" 
                 onClick={() => setAspectRatio("16:9")}
-                className={aspectRatio === "16:9" ? "bg-primary text-background hover:bg-primary/80" : "border-gray-700 text-gray-300"}
+                className={aspectRatio === "16:9" ? "bg-primary text-background hover:bg-primary/80 rounded-full" : "border-gray-700 text-gray-300 rounded-full"}
               >
                 16:9
               </Button>
@@ -87,7 +87,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                 variant={aspectRatio === "9:16" ? "default" : "outline"}
                 size="sm" 
                 onClick={() => setAspectRatio("9:16")}
-                className={aspectRatio === "9:16" ? "bg-primary text-background hover:bg-primary/80" : "border-gray-700 text-gray-300"}
+                className={aspectRatio === "9:16" ? "bg-primary text-background hover:bg-primary/80 rounded-full" : "border-gray-700 text-gray-300 rounded-full"}
               >
                 9:16
               </Button>
@@ -95,7 +95,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                 variant={aspectRatio === "1:1" ? "default" : "outline"}
                 size="sm" 
                 onClick={() => setAspectRatio("1:1")}
-                className={aspectRatio === "1:1" ? "bg-primary text-background hover:bg-primary/80" : "border-gray-700 text-gray-300"}
+                className={aspectRatio === "1:1" ? "bg-primary text-background hover:bg-primary/80 rounded-full" : "border-gray-700 text-gray-300 rounded-full"}
               >
                 1:1
               </Button>
@@ -104,12 +104,11 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
 
           <div className={`relative w-full ${aspectRatio === "9:16" ? "max-w-[400px] mx-auto" : ""}`}>
             {aspectRatio === "16:9" && (
-              <AspectRatio ratio={16/9} className="bg-black/60 rounded-lg overflow-hidden border border-gray-800">
+              <AspectRatio ratio={16/9} className="bg-black/60 rounded-xl overflow-hidden border border-gray-800">
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
                     <div className="animate-pulse-soft">
                       <Play className="w-16 h-16 text-primary mx-auto" />
-                      <p className="text-gray-400 mt-2">Video Preview</p>
                     </div>
                   </div>
                 </div>
@@ -117,12 +116,11 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
             )}
             
             {aspectRatio === "9:16" && (
-              <AspectRatio ratio={9/16} className="bg-black/60 rounded-lg overflow-hidden border border-gray-800">
+              <AspectRatio ratio={9/16} className="bg-black/60 rounded-xl overflow-hidden border border-gray-800">
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
                     <div className="animate-pulse-soft">
                       <Play className="w-16 h-16 text-primary mx-auto" />
-                      <p className="text-gray-400 mt-2">Video Preview</p>
                     </div>
                   </div>
                 </div>
@@ -130,12 +128,11 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
             )}
             
             {aspectRatio === "1:1" && (
-              <AspectRatio ratio={1/1} className="bg-black/60 rounded-lg overflow-hidden border border-gray-800">
+              <AspectRatio ratio={1/1} className="bg-black/60 rounded-xl overflow-hidden border border-gray-800">
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
                     <div className="animate-pulse-soft">
                       <Play className="w-16 h-16 text-primary mx-auto" />
-                      <p className="text-gray-400 mt-2">Video Preview</p>
                     </div>
                   </div>
                 </div>
@@ -158,12 +155,12 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
         </TabsContent>
         
         <TabsContent value="export" className="space-y-4">
-          <div className="p-4 bg-black/40 border border-gray-800 rounded-lg">
+          <div className="p-4 bg-black/40 border border-gray-800 rounded-xl">
             <h3 className="font-medium mb-3 text-white">Download Options</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Button 
                 variant="outline" 
-                className="flex items-center justify-center gap-2 border-gray-700 hover:bg-primary/20 text-white"
+                className="flex items-center justify-center gap-2 border-gray-700 hover:bg-primary/20 text-white rounded-full transition-all duration-300 hover:scale-105"
                 onClick={handleDownload}
               >
                 <Download className="w-4 h-4" />
@@ -171,7 +168,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
               </Button>
               <Button 
                 variant="outline" 
-                className="flex items-center justify-center gap-2 border-gray-700 hover:bg-primary/20 text-white"
+                className="flex items-center justify-center gap-2 border-gray-700 hover:bg-primary/20 text-white rounded-full transition-all duration-300 hover:scale-105"
                 onClick={handleDownload}
               >
                 <Download className="w-4 h-4" />
@@ -180,7 +177,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
             </div>
           </div>
 
-          <div className="p-4 bg-black/40 border border-gray-800 rounded-lg">
+          <div className="p-4 bg-black/40 border border-gray-800 rounded-xl">
             <h3 className="font-medium mb-3 text-white">Share to Social Media</h3>
             <div className="flex flex-wrap gap-3">
               <TooltipProvider>
@@ -189,13 +186,13 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                     <Button 
                       variant="outline" 
                       size="icon"
-                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white" 
+                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300" 
                       onClick={() => handleShare('Instagram')}
                     >
                       <Instagram className="w-5 h-5" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                  <TooltipContent className="bg-black/90 text-white border-gray-800 rounded-xl">
                     <p>Share to Instagram</p>
                   </TooltipContent>
                 </Tooltip>
@@ -207,13 +204,13 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white"
+                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300"
                       onClick={() => handleShare('YouTube Shorts')}
                     >
                       <Youtube className="w-5 h-5" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                  <TooltipContent className="bg-black/90 text-white border-gray-800 rounded-xl">
                     <p>Share to YouTube Shorts</p>
                   </TooltipContent>
                 </Tooltip>
@@ -225,13 +222,13 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white"
+                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300"
                       onClick={() => handleShare('Twitter')}
                     >
                       <Twitter className="w-5 h-5" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                  <TooltipContent className="bg-black/90 text-white border-gray-800 rounded-xl">
                     <p>Share to X (Twitter)</p>
                   </TooltipContent>
                 </Tooltip>
@@ -243,13 +240,13 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ clipData }) => {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white"
+                      className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300"
                       onClick={() => handleShare('Other platforms')}
                     >
                       <Share className="w-5 h-5" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent className="bg-gray-900 text-white border-gray-800">
+                  <TooltipContent className="bg-black/90 text-white border-gray-800 rounded-xl">
                     <p>Copy Link</p>
                   </TooltipContent>
                 </Tooltip>
