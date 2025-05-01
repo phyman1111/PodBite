@@ -3,7 +3,7 @@ import React from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Twitter, ExternalLink } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const ContactPage = () => {
@@ -29,40 +29,34 @@ const ContactPage = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
           <Card className="glass-card p-6 flex flex-col items-center text-center">
-            <Twitter className="w-12 h-12 text-primary mb-4" />
+            <X className="w-12 h-12 text-primary mb-4" />
             <h2 className="text-xl font-semibold text-white mb-2">Connect on X</h2>
             <p className="text-gray-400 mb-6">
-              Follow us or send us a direct message on X (formerly Twitter) for the fastest response
+              Follow us or send us a direct message on X for the fastest response
             </p>
             <Button 
               className="bg-primary text-background hover:bg-primary/80 rounded-full"
               onClick={redirectToTwitter}
             >
-              <Twitter className="mr-2 h-4 w-4" />
+              <X className="mr-2 h-4 w-4" />
               Message on X
               <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </Card>
           
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-4">Support Hours</h2>
-            <div className="space-y-3">
-              <div className="flex justify-between border-b border-gray-800 pb-2">
-                <span className="text-gray-400">Monday - Friday</span>
-                <span className="text-white">9:00 AM - 6:00 PM EST</span>
+            <h2 className="text-xl font-semibold text-white mb-4">Support Availability</h2>
+            <div className="space-y-4">
+              <div className="flex items-center justify-center">
+                <span className="text-primary text-2xl font-semibold">Available 24/7</span>
               </div>
-              <div className="flex justify-between border-b border-gray-800 pb-2">
-                <span className="text-gray-400">Saturday</span>
-                <span className="text-white">10:00 AM - 2:00 PM EST</span>
-              </div>
-              <div className="flex justify-between pb-2">
-                <span className="text-gray-400">Sunday</span>
-                <span className="text-white">Closed</span>
+              <div className="bg-primary/10 p-4 rounded-xl text-center">
+                <p className="text-white">We're always here to help!</p>
               </div>
             </div>
             <div className="mt-6">
               <p className="text-gray-400 mb-1">Typical response time:</p>
-              <p className="text-white">Within 24 hours during business hours</p>
+              <p className="text-white">Within 24 hours</p>
             </div>
           </Card>
         </div>

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useNavigate } from 'react-router-dom';
-import { AlertCircle, Play, Download, Share, Instagram, Twitter, Youtube } from 'lucide-react';
+import { AlertCircle, Play, Download, Share, Instagram, X, Youtube } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import {
   Tooltip,
@@ -35,7 +35,7 @@ interface InputSectionProps {
 const InputSection: React.FC<InputSectionProps> = ({ onGenerateClip, clipData }) => {
   const [url, setUrl] = useState('');
   const [prompt, setPrompt] = useState('');
-  const [duration, setDuration] = useState('1-5');
+  const [duration, setDuration] = useState('5');
   const [language, setLanguage] = useState('english');
   const [isLoading, setIsLoading] = useState(false);
   const [aspectRatio, setAspectRatio] = useState("16:9");
@@ -57,17 +57,17 @@ const InputSection: React.FC<InputSectionProps> = ({ onGenerateClip, clipData })
     }
     
     // Check if duration requires a paid plan
-    if (duration === '10-15' || duration === 'custom') {
-      if (duration !== 'custom') {
-        toast.info("This duration requires a paid plan", {
-          description: "Please check our pricing page for more information.",
-          action: {
-            label: "View Pricing",
-            onClick: () => navigate('/pricing')
-          }
-        });
-        return;
-      }
+    const durationValue = duration === 'custom' ? parseInt(customDuration) : parseInt(duration);
+    
+    if (durationValue > 11) {
+      toast.info("This duration requires a paid plan", {
+        description: "Please login or check our pricing page for more information.",
+        action: {
+          label: "Login",
+          onClick: () => navigate('/login')
+        }
+      });
+      return;
     }
 
     setIsLoading(true);
@@ -132,16 +132,19 @@ const InputSection: React.FC<InputSectionProps> = ({ onGenerateClip, clipData })
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="duration" className="block text-sm font-medium text-gray-300 mb-1">
-                  Clip Duration
+                  Clip Duration (minutes)
                 </label>
                 <Select value={duration} onValueChange={setDuration}>
                   <SelectTrigger id="duration" className="w-full bg-black/50 border-gray-700 text-white">
                     <SelectValue placeholder="Select duration" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#1A1F2C] border border-gray-700 text-white">
-                    <SelectItem value="1-5">1-5 minutes</SelectItem>
-                    <SelectItem value="5-10">5-10 minutes</SelectItem>
-                    <SelectItem value="10-15">10-15 minutes (Pro)</SelectItem>
+                    <SelectItem value="1">1 minute</SelectItem>
+                    <SelectItem value="3">3 minutes</SelectItem>
+                    <SelectItem value="5">5 minutes</SelectItem>
+                    <SelectItem value="8">8 minutes</SelectItem>
+                    <SelectItem value="10">10 minutes</SelectItem>
+                    <SelectItem value="15">15 minutes (Pro)</SelectItem>
                     <SelectItem value="custom">Custom Length (Pro)</SelectItem>
                   </SelectContent>
                 </Select>
@@ -391,7 +394,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onGenerateClip, clipData })
                           className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300"
                           onClick={() => {
                             toast.info("Premium feature", {
-                              description: "Share to Twitter is available in our Pro plan",
+                              description: "Share to X is available in our Pro plan",
                               action: {
                                 label: "View Pricing",
                                 onClick: () => navigate('/pricing')
@@ -399,11 +402,11 @@ const InputSection: React.FC<InputSectionProps> = ({ onGenerateClip, clipData })
                             });
                           }}
                         >
-                          <Twitter className="w-5 h-5" />
+                          <X className="w-5 h-5" />
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent className="bg-black/90 text-white border-gray-800 rounded-xl">
-                        <p>Share to X (Twitter)</p>
+                        <p>Share to X</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>

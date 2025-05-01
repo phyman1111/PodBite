@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Header from "@/components/Header";
 import InputSection from "@/components/InputSection";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [clipData, setClipData] = useState<any>(null);
