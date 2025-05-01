@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import Header from "@/components/Header";
-import InputSection from "@/components/InputSection";
+import InputSection from "@/components/input-section";
 import Footer from "@/components/Footer";
 
 const Index = () => {
