@@ -133,6 +133,10 @@
     @apply bg-gradient-to-r from-white via-primary to-white bg-clip-text text-transparent bg-[length:200%_100%];
     animation: shimmer 6s infinite;
   }
+
+  .story-link {
+    @apply relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
   
   @keyframes shimmer {
     0% { background-position: 0% 50%; }
@@ -149,3 +153,4 @@
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
 }
+

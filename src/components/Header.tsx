@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, Mic } from "lucide-react";
 import {
@@ -10,8 +10,6 @@ import {
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <header className="w-full py-4 glass-effect sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
@@ -27,10 +25,10 @@ const Header = () => {
           </div>
         </Link>
         
-        <nav className="hidden md:flex space-x-6">
-          <Link to="/pricing" className="text-gray-300 hover:text-primary transition-colors duration-300">Pricing</Link>
-          <Link to="/about" className="text-gray-300 hover:text-primary transition-colors duration-300">About</Link>
-          <Link to="/help" className="text-gray-300 hover:text-primary transition-colors duration-300">Help</Link>
+        <nav className="hidden md:flex space-x-8">
+          <Link to="/pricing" className="story-link text-gray-300 hover:text-primary transition-all duration-300">Pricing</Link>
+          <Link to="/about" className="story-link text-gray-300 hover:text-primary transition-all duration-300">About</Link>
+          <Link to="/help" className="story-link text-gray-300 hover:text-primary transition-all duration-300">Help</Link>
         </nav>
         
         <div className="flex items-center gap-3">
@@ -49,11 +47,19 @@ const Header = () => {
               </Button>
             </SheetTrigger>
             <SheetContent className="glass-effect border-none">
-              <div className="flex flex-col space-y-4 mt-8">
-                <Link to="/pricing" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">Pricing</Link>
-                <Link to="/about" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">About</Link>
-                <Link to="/help" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">Help</Link>
-                <Link to="/login" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300">Login</Link>
+              <div className="flex flex-col space-y-6 mt-8">
+                <Link to="/pricing" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300 flex items-center space-x-2 hover:translate-x-1 transition-transform">
+                  <span>Pricing</span>
+                </Link>
+                <Link to="/about" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300 flex items-center space-x-2 hover:translate-x-1 transition-transform">
+                  <span>About</span>
+                </Link>
+                <Link to="/help" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300 flex items-center space-x-2 hover:translate-x-1 transition-transform">
+                  <span>Help</span>
+                </Link>
+                <Link to="/login" className="bg-primary/10 text-primary hover:bg-primary/20 text-lg py-3 px-4 rounded-xl transition-all duration-300 text-center mt-2">
+                  Login
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
