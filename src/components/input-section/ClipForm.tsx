@@ -26,37 +26,41 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [customDuration, setCustomDuration] = useState('');
   const [isListening, setIsListening] = useState(false);
-  const [speechRecognition, setSpeechRecognition] = useState<any>(null);
+  const [speechRecognition, setSpeechRecognition] = useState<SpeechRecognition | null>(null);
 
   // Initialize speech recognition
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.lang = language === 'english' ? 'en-US' : language;
+      // Use the appropriate constructor based on browser support
+      const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
       
-      recognition.onresult = (event: any) => {
-        const transcript = Array.from(event.results)
-          .map((result: any) => result[0])
-          .map(result => result.transcript)
-          .join('');
+      if (SpeechRecognitionConstructor) {
+        const recognition = new SpeechRecognitionConstructor();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = language === 'english' ? 'en-US' : language;
         
-        setPrompt(transcript);
-      };
-      
-      recognition.onerror = (event: any) => {
-        console.error('Speech recognition error', event.error);
-        toast.error(`Speech recognition error: ${event.error}`);
-        setIsListening(false);
-      };
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          const transcript = Array.from(event.results)
+            .map((result) => result[0])
+            .map(result => result.transcript)
+            .join('');
+          
+          setPrompt(transcript);
+        };
+        
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+          console.error('Speech recognition error', event.error);
+          toast.error(`Speech recognition error: ${event.error}`);
+          setIsListening(false);
+        };
 
-      recognition.onend = () => {
-        setIsListening(false);
-      };
-      
-      setSpeechRecognition(recognition);
+        recognition.onend = () => {
+          setIsListening(false);
+        };
+        
+        setSpeechRecognition(recognition);
+      }
     } else {
       toast.error("Speech recognition is not supported in your browser");
     }
