@@ -3,7 +3,7 @@ import React from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { X, ExternalLink } from "lucide-react";
+import { X, ExternalLink, Linkedin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const ContactPage = () => {
@@ -29,7 +29,18 @@ const ContactPage = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
           <Card className="glass-card p-6 flex flex-col items-center text-center">
-            <X className="w-12 h-12 text-primary mb-4" />
+            <div className="w-12 h-12 flex items-center justify-center text-primary mb-4">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 512 512" 
+                width="48" 
+                height="48" 
+                fill="currentColor"
+                className="w-full h-full"
+              >
+                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+              </svg>
+            </div>
             <h2 className="text-xl font-semibold text-white mb-2">Connect on X</h2>
             <p className="text-gray-400 mb-6">
               Follow us or send us a direct message on X for the fastest response
@@ -59,36 +70,6 @@ const ContactPage = () => {
               <p className="text-white">Within 24 hours</p>
             </div>
           </Card>
-        </div>
-        
-        <div className="glass-card p-6 mb-12 max-w-4xl mx-auto">
-          <h2 className="text-xl font-semibold text-white mb-6">Frequently Asked Support Questions</h2>
-          
-          <div className="space-y-6">
-            <div className="border-b border-gray-800 pb-4">
-              <h3 className="font-medium text-white mb-2">How do I request a refund?</h3>
-              <p className="text-gray-400 text-sm">
-                To request a refund, please contact us via X with your account email and order number. 
-                All refund requests are processed within 5-7 business days.
-              </p>
-            </div>
-            
-            <div className="border-b border-gray-800 pb-4">
-              <h3 className="font-medium text-white mb-2">Can I change my subscription plan?</h3>
-              <p className="text-gray-400 text-sm">
-                Yes, you can update your subscription at any time from your account settings. 
-                Changes will take effect on your next billing cycle.
-              </p>
-            </div>
-            
-            <div className="pb-4">
-              <h3 className="font-medium text-white mb-2">I'm experiencing technical issues. What should I do?</h3>
-              <p className="text-gray-400 text-sm">
-                For technical support, please provide details about the issue, include screenshots if possible, 
-                and the steps to reproduce the problem. Our team will investigate and get back to you as soon as possible.
-              </p>
-            </div>
-          </div>
         </div>
       </main>
       

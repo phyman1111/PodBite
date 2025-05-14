@@ -27,6 +27,7 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
   const [customDuration, setCustomDuration] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<SpeechRecognition | null>(null);
+  const [customLanguage, setCustomLanguage] = useState('');
 
   // Initialize speech recognition
   useEffect(() => {
@@ -82,6 +83,40 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
     }
   };
 
+  const handleLanguageChange = (value: string) => {
+    if (value === 'custom') {
+      // Do nothing here, we'll handle custom language in a separate input
+    } else {
+      setLanguage(value);
+    }
+  };
+
+  const handleCustomLanguageRequest = () => {
+    if (!customLanguage.trim()) {
+      toast.error("Please enter the language name");
+      return;
+    }
+
+    // Prepare message for clipboard
+    const message = `Please add this language - "${customLanguage}"`;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(message)
+      .then(() => {
+        toast.success("Message copied to clipboard!", {
+          description: "Please DM us on Twitter with this request.",
+          action: {
+            label: "Go to Twitter",
+            onClick: () => window.open("https://x.com/podbite_", "_blank")
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Failed to copy message: ', err);
+        toast.error("Failed to copy message to clipboard");
+      });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -93,16 +128,6 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
 
     if (!prompt) {
       toast.error("Please enter what content you're looking for");
-      return;
-    }
-    
-    // Check if duration requires a login
-    const durationValue = duration === 'custom' ? parseInt(customDuration) : parseInt(duration);
-    
-    if (durationValue > 11) {
-      toast.error("Clips longer than 11 minutes are not available", {
-        description: "Please select a duration of 11 minutes or less."
-      });
       return;
     }
 
@@ -179,7 +204,7 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
           <label htmlFor="language" className="block text-sm font-medium text-gray-300 mb-1">
             Language
           </label>
-          <Select value={language} onValueChange={setLanguage}>
+          <Select value={language} onValueChange={handleLanguageChange}>
             <SelectTrigger id="language" className="w-full bg-black/50 border-gray-700 text-white">
               <SelectValue placeholder="Select language" />
             </SelectTrigger>
@@ -214,16 +239,29 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
               <SelectItem value="persian">Persian (فارسی)</SelectItem>
               <SelectItem value="swahili">Swahili (Kiswahili)</SelectItem>
               <SelectItem value="hebrew">Hebrew (עִבְרִית)</SelectItem>
+              <SelectItem value="custom">Request New Language</SelectItem>
             </SelectContent>
           </Select>
+          
+          {language === 'custom' && (
+            <div className="mt-2 space-y-2">
+              <Input
+                type="text"
+                placeholder="Enter language name"
+                value={customLanguage}
+                onChange={(e) => setCustomLanguage(e.target.value)}
+                className="w-full bg-black/50 border-gray-700 text-white"
+              />
+              <Button 
+                type="button" 
+                onClick={handleCustomLanguageRequest}
+                className="w-full bg-primary hover:bg-primary/80 text-background"
+              >
+                Request Language
+              </Button>
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className="text-xs text-amber-400 bg-amber-950/30 p-3 rounded-lg flex items-start">
-        <AlertCircle className="w-4 h-4 mr-2 mt-0.5 shrink-0" />
-        <span>
-          Free access allows up to 11 minutes of content.
-        </span>
       </div>
       
       <Button 

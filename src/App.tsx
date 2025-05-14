@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AboutPage from "./pages/About";
@@ -16,12 +17,8 @@ import ContactPage from "./pages/Contact";
 // Initialize the query client outside the component
 const queryClient = new QueryClient();
 
-// Analytics component for tracking
-const Analytics = () => {
+const App = () => {
   React.useEffect(() => {
-    // Initialize analytics here
-    console.log('Analytics initialized');
-    
     // Track page view
     const trackPageView = () => {
       console.log(`Page viewed: ${window.location.pathname}`);
@@ -36,7 +33,6 @@ const Analytics = () => {
       trackPageView();
     };
     
-    // Listen for location changes
     window.addEventListener('popstate', handleRouteChange);
     
     return () => {
@@ -44,10 +40,6 @@ const Analytics = () => {
     };
   }, []);
   
-  return null;
-};
-
-const App = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
