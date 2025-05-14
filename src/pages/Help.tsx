@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const HelpPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-black">
-      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0')] bg-cover bg-center opacity-10 pointer-events-none"></div>
+      {/* Removed background image div that was creating opacity */}
       
       <Header />
       
@@ -27,7 +27,7 @@ const HelpPage = () => {
           <h2 className="text-xl font-semibold text-white mb-6">How It Works</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="hover:translate-y-[-5px] transition-all duration-300">
+            <div className="transition-all duration-300">
               <div className="bg-primary/20 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <span className="text-primary font-bold text-xl">1</span>
               </div>
@@ -37,7 +37,7 @@ const HelpPage = () => {
               </p>
             </div>
             
-            <div className="hover:translate-y-[-5px] transition-all duration-300">
+            <div className="transition-all duration-300">
               <div className="bg-primary/20 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <span className="text-primary font-bold text-xl">2</span>
               </div>
@@ -47,7 +47,7 @@ const HelpPage = () => {
               </p>
             </div>
             
-            <div className="hover:translate-y-[-5px] transition-all duration-300">
+            <div className="transition-all duration-300">
               <div className="bg-primary/20 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <span className="text-primary font-bold text-xl">3</span>
               </div>
