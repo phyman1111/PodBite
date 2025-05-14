@@ -13,8 +13,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
-      <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0')] bg-cover bg-center opacity-10 pointer-events-none"></div>
-      
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-8 md:py-12 relative z-10">
