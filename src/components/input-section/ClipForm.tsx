@@ -16,9 +16,10 @@ import DurationSelector from './DurationSelector';
 
 interface ClipFormProps {
   onGenerateClip: (data: any) => void;
+  onAddLanguage: () => void;
 }
 
-const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
+const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip, onAddLanguage }) => {
   const [url, setUrl] = useState('');
   const [prompt, setPrompt] = useState('');
   const [duration, setDuration] = useState('5');
@@ -85,7 +86,8 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
 
   const handleLanguageChange = (value: string) => {
     if (value === 'custom') {
-      // Do nothing here, we'll handle custom language in a separate input
+      // Call the onAddLanguage function when custom language is selected
+      onAddLanguage();
     } else {
       setLanguage(value);
     }
@@ -242,25 +244,6 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
               <SelectItem value="custom">Request New Language</SelectItem>
             </SelectContent>
           </Select>
-          
-          {language === 'custom' && (
-            <div className="mt-2 space-y-2">
-              <Input
-                type="text"
-                placeholder="Enter language name"
-                value={customLanguage}
-                onChange={(e) => setCustomLanguage(e.target.value)}
-                className="w-full bg-black/50 border-gray-700 text-white"
-              />
-              <Button 
-                type="button" 
-                onClick={handleCustomLanguageRequest}
-                className="w-full bg-primary hover:bg-primary/80 text-background"
-              >
-                Request Language
-              </Button>
-            </div>
-          )}
         </div>
       </div>
       
