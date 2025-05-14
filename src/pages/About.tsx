@@ -3,12 +3,12 @@ import React from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Twitter } from "lucide-react";
+import { X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-black">
       <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0')] bg-cover bg-center opacity-10 pointer-events-none"></div>
       
       <Header />
@@ -46,44 +46,31 @@ const AboutPage = () => {
           </div>
         </div>
         
-        <div className="glass-card p-6 mb-12 max-w-3xl mx-auto">
+        <div className="glass-card p-6 mb-12 max-w-4xl mx-auto">
           <h2 className="text-xl font-semibold text-white mb-6 text-center">Meet Our Team</h2>
           
-          <div className="flex justify-center">
-            <div className="w-full max-w-sm bg-black/40 border border-gray-800 rounded-xl overflow-hidden">
-              <div className="p-6 text-center">
-                <div className="w-24 h-24 rounded-full bg-gray-800 mx-auto mb-4 overflow-hidden">
-                  <img 
-                    src="/public/lovable-uploads/e52bd2a2-bdb1-4e4d-b690-9dfc8c958d1a.png" 
-                    alt="Hriday Kadam" 
-                    className="w-full h-full object-cover"
-                  />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="w-full glass-effect p-6 rounded-xl transition-all duration-300 hover:translate-y-[-5px]">
+                <div className="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 overflow-hidden flex items-center justify-center">
+                  <span className="text-2xl text-primary font-bold">
+                    {String.fromCharCode(65 + index)}
+                  </span>
                 </div>
-                <h3 className="text-lg font-semibold text-white">Hriday Kadam</h3>
-                <p className="text-primary mb-4">Founder & CEO</p>
-                <p className="text-gray-400 text-sm mb-4">
-                  Passionate about making content more accessible and helping creators reach wider audiences.
-                </p>
+                <h3 className="text-lg font-semibold text-white text-center">Team Member</h3>
+                <p className="text-primary mb-4 text-center">Role Title</p>
                 <div className="flex justify-center space-x-3">
                   <a 
-                    href="https://www.linkedin.com/in/hridaykadam/" 
+                    href="https://x.com/podbite_" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="p-2 bg-black/30 rounded-full text-gray-400 hover:text-primary transition-colors"
                   >
-                    <Linkedin size={20} />
-                  </a>
-                  <a 
-                    href="https://x.com/hridaykadam" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-2 bg-black/30 rounded-full text-gray-400 hover:text-primary transition-colors"
-                  >
-                    <Twitter size={20} />
+                    <X size={18} />
                   </a>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
         
@@ -93,7 +80,7 @@ const AboutPage = () => {
             Join thousands of content creators using PodBite to share their best moments
           </p>
           <Button 
-            className="bg-primary text-background hover:bg-primary/80 rounded-full"
+            className="bg-primary text-background hover:bg-primary/80 rounded-3xl"
             size="lg"
             asChild
           >

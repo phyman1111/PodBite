@@ -37,8 +37,8 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
           <SelectItem value="5">5 minutes</SelectItem>
           <SelectItem value="8">8 minutes</SelectItem>
           <SelectItem value="10">10 minutes</SelectItem>
-          <SelectItem value="15">15 minutes (Pro)</SelectItem>
-          <SelectItem value="custom">Custom Length (Pro)</SelectItem>
+          <SelectItem value="15">15 minutes</SelectItem>
+          <SelectItem value="custom">Custom Length</SelectItem>
         </SelectContent>
       </Select>
       
@@ -46,12 +46,11 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
         <div className="mt-2">
           <Input
             type="number"
-            placeholder="Enter minutes (max 30)"
+            placeholder="Enter minutes"
             value={customDuration}
             onChange={(e) => setCustomDuration(e.target.value)}
             className="w-full bg-black/50 border-gray-700 text-white focus:ring-primary focus:border-primary transition-all"
             min="1"
-            max="30"
           />
         </div>
       )}

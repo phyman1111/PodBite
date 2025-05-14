@@ -8,11 +8,11 @@ import { Card } from "@/components/ui/card";
 
 const ContactPage = () => {
   const redirectToTwitter = () => {
-    window.open('https://x.com/hridaykadam', '_blank');
+    window.open('https://x.com/podbite_', '_blank');
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-black">
       <div className="fixed inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0')] bg-cover bg-center opacity-10 pointer-events-none"></div>
       
       <Header />
@@ -35,7 +35,7 @@ const ContactPage = () => {
               Follow us or send us a direct message on X for the fastest response
             </p>
             <Button 
-              className="bg-primary text-background hover:bg-primary/80 rounded-full"
+              className="bg-primary text-background hover:bg-primary/80 rounded-3xl"
               onClick={redirectToTwitter}
             >
               <X className="mr-2 h-4 w-4" />
@@ -76,7 +76,7 @@ const ContactPage = () => {
             <div className="border-b border-gray-800 pb-4">
               <h3 className="font-medium text-white mb-2">Can I change my subscription plan?</h3>
               <p className="text-gray-400 text-sm">
-                Yes, you can upgrade or downgrade your subscription at any time from your account settings. 
+                Yes, you can update your subscription at any time from your account settings. 
                 Changes will take effect on your next billing cycle.
               </p>
             </div>

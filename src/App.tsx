@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import PricingPage from "./pages/Pricing";
 import AboutPage from "./pages/About";
 import HelpPage from "./pages/Help";
 import TermsPage from "./pages/Terms";
@@ -18,6 +17,37 @@ import LoginPage from "./pages/Login";
 // Initialize the query client outside the component
 const queryClient = new QueryClient();
 
+// Analytics component for tracking
+const Analytics = () => {
+  React.useEffect(() => {
+    // Initialize analytics here
+    console.log('Analytics initialized');
+    
+    // Track page view
+    const trackPageView = () => {
+      console.log(`Page viewed: ${window.location.pathname}`);
+      // Add your actual analytics tracking code here
+    };
+    
+    // Track initial page load
+    trackPageView();
+    
+    // Track subsequent navigation
+    const handleRouteChange = () => {
+      trackPageView();
+    };
+    
+    // Listen for location changes
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
+  
+  return null;
+};
+
 const App = () => {
   return (
     <React.StrictMode>
@@ -26,10 +56,10 @@ const App = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
+            <Analytics />
             <div className="min-h-screen bg-black">
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/help" element={<HelpPage />} />
                 <Route path="/terms" element={<TermsPage />} />

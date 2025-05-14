@@ -18,27 +18,15 @@ const Header = () => {
             <h1 className="text-2xl font-bold">
               Pod<span className="text-primary">Bite</span>
             </h1>
-            <span className="ml-2 text-xs px-2 py-0.5 bg-primary/20 text-primary rounded-full">
-              Beta
-            </span>
           </div>
         </Link>
         
         <nav className="hidden md:flex space-x-8">
-          <Link to="/pricing" className="story-link text-gray-300 hover:text-primary transition-all duration-300">Pricing</Link>
           <Link to="/about" className="story-link text-gray-300 hover:text-primary transition-all duration-300">About</Link>
           <Link to="/help" className="story-link text-gray-300 hover:text-primary transition-all duration-300">Help</Link>
         </nav>
         
-        <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            className="border-primary text-primary hidden md:flex hover:bg-primary hover:text-background rounded-full transition-all duration-300 hover:scale-105 btn-glow"
-            asChild
-          >
-            <Link to="/login">Login</Link>
-          </Button>
-          
+        <div className="flex items-center">
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="outline" size="icon" className="rounded-full hover:bg-primary/20">
@@ -47,17 +35,11 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent className="glass-effect border-none">
               <div className="flex flex-col space-y-6 mt-8">
-                <Link to="/pricing" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300 flex items-center space-x-2 hover:translate-x-1 transition-transform">
-                  <span>Pricing</span>
-                </Link>
                 <Link to="/about" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300 flex items-center space-x-2 hover:translate-x-1 transition-transform">
                   <span>About</span>
                 </Link>
                 <Link to="/help" className="text-gray-300 hover:text-primary text-lg py-2 transition-colors duration-300 flex items-center space-x-2 hover:translate-x-1 transition-transform">
                   <span>Help</span>
-                </Link>
-                <Link to="/login" className="bg-primary/10 text-primary hover:bg-primary/20 text-lg py-3 px-4 rounded-xl transition-all duration-300 text-center mt-2">
-                  Login
                 </Link>
               </div>
             </SheetContent>

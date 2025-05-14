@@ -42,12 +42,12 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
       return;
     }
     
-    // Check if duration requires a paid plan
+    // Check if duration requires a login
     const durationValue = duration === 'custom' ? parseInt(customDuration) : parseInt(duration);
     
     if (durationValue > 11) {
-      toast.info("This duration requires a paid plan", {
-        description: "Please login or check our pricing page for more information.",
+      toast.info("This duration requires you to login", {
+        description: "Please login to use clips longer than 11 minutes.",
         action: {
           label: "Login",
           onClick: () => navigate('/login')
@@ -121,13 +121,27 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
             <SelectTrigger id="language" className="w-full bg-black/50 border-gray-700 text-white">
               <SelectValue placeholder="Select language" />
             </SelectTrigger>
-            <SelectContent className="bg-[#1A1F2C] border border-gray-700 text-white">
+            <SelectContent className="bg-[#1A1F2C] border border-gray-700 text-white max-h-[300px]">
               <SelectItem value="english">English</SelectItem>
-              <SelectItem value="spanish">Spanish</SelectItem>
-              <SelectItem value="french">French</SelectItem>
-              <SelectItem value="german">German</SelectItem>
-              <SelectItem value="chinese">Chinese</SelectItem>
-              <SelectItem value="japanese">Japanese</SelectItem>
+              <SelectItem value="spanish">Spanish (Español)</SelectItem>
+              <SelectItem value="french">French (Français)</SelectItem>
+              <SelectItem value="german">German (Deutsch)</SelectItem>
+              <SelectItem value="chinese">Chinese (中文)</SelectItem>
+              <SelectItem value="japanese">Japanese (日本語)</SelectItem>
+              <SelectItem value="korean">Korean (한국어)</SelectItem>
+              <SelectItem value="russian">Russian (Русский)</SelectItem>
+              <SelectItem value="portuguese">Portuguese (Português)</SelectItem>
+              <SelectItem value="italian">Italian (Italiano)</SelectItem>
+              <SelectItem value="dutch">Dutch (Nederlands)</SelectItem>
+              <SelectItem value="arabic">Arabic (العربية)</SelectItem>
+              <SelectItem value="hindi">Hindi (हिन्दी)</SelectItem>
+              <SelectItem value="turkish">Turkish (Türkçe)</SelectItem>
+              <SelectItem value="polish">Polish (Polski)</SelectItem>
+              <SelectItem value="swedish">Swedish (Svenska)</SelectItem>
+              <SelectItem value="vietnamese">Vietnamese (Tiếng Việt)</SelectItem>
+              <SelectItem value="thai">Thai (ไทย)</SelectItem>
+              <SelectItem value="indonesian">Indonesian (Bahasa Indonesia)</SelectItem>
+              <SelectItem value="greek">Greek (Ελληνικά)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -136,8 +150,8 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
       <div className="text-xs text-amber-400 bg-amber-950/30 p-3 rounded-lg flex items-start">
         <AlertCircle className="w-4 h-4 mr-2 mt-0.5 shrink-0" />
         <span>
-          Free tier allows up to 11 minutes of content. For longer clips and advanced features, 
-          check our <a href="/pricing" className="text-primary underline">pricing plans</a>.
+          Free access allows up to 11 minutes of content. For longer clips, 
+          please <a href="/login" className="text-primary underline">login</a>.
         </span>
       </div>
       

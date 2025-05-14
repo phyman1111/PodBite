@@ -56,7 +56,7 @@ const AspectRatioSelector: React.FC<AspectRatioSelectorProps> = ({ aspectRatio, 
           variant={aspectRatio === "16:9" ? "default" : "outline"} 
           size="sm" 
           onClick={() => setAspectRatio("16:9")}
-          className={aspectRatio === "16:9" ? "bg-primary text-background hover:bg-primary/80 rounded-full" : "border-gray-700 text-gray-300 rounded-full"}
+          className={aspectRatio === "16:9" ? "bg-primary text-background hover:bg-primary/80" : "border-gray-700 text-gray-300"}
         >
           16:9
         </Button>
@@ -64,7 +64,7 @@ const AspectRatioSelector: React.FC<AspectRatioSelectorProps> = ({ aspectRatio, 
           variant={aspectRatio === "9:16" ? "default" : "outline"}
           size="sm" 
           onClick={() => setAspectRatio("9:16")}
-          className={aspectRatio === "9:16" ? "bg-primary text-background hover:bg-primary/80 rounded-full" : "border-gray-700 text-gray-300 rounded-full"}
+          className={aspectRatio === "9:16" ? "bg-primary text-background hover:bg-primary/80" : "border-gray-700 text-gray-300"}
         >
           9:16
         </Button>
@@ -72,7 +72,7 @@ const AspectRatioSelector: React.FC<AspectRatioSelectorProps> = ({ aspectRatio, 
           variant={aspectRatio === "1:1" ? "default" : "outline"}
           size="sm" 
           onClick={() => setAspectRatio("1:1")}
-          className={aspectRatio === "1:1" ? "bg-primary text-background hover:bg-primary/80 rounded-full" : "border-gray-700 text-gray-300 rounded-full"}
+          className={aspectRatio === "1:1" ? "bg-primary text-background hover:bg-primary/80" : "border-gray-700 text-gray-300"}
         >
           1:1
         </Button>
@@ -196,13 +196,13 @@ const ShareButton: React.FC<ShareButtonProps> = ({ icon, tooltip, navigate }) =>
           <Button 
             variant="outline" 
             size="icon"
-            className="rounded-full w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300" 
+            className="w-12 h-12 border-gray-700 hover:bg-primary/20 text-white hover:scale-110 transition-all duration-300" 
             onClick={() => {
-              toast.info("Premium feature", {
-                description: `${tooltip} is available in our Pro plan`,
+              toast.info("Login required", {
+                description: `Login to use ${tooltip}`,
                 action: {
-                  label: "View Pricing",
-                  onClick: () => navigate('/pricing')
+                  label: "Login",
+                  onClick: () => navigate('/login')
                 }
               });
             }}
