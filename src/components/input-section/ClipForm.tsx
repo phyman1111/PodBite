@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { toast } from "sonner";
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Mic, MicOff } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,58 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
   const [language, setLanguage] = useState('english');
   const [isLoading, setIsLoading] = useState(false);
   const [customDuration, setCustomDuration] = useState('');
-  const navigate = useNavigate();
+  const [isListening, setIsListening] = useState(false);
+  const [speechRecognition, setSpeechRecognition] = useState<any>(null);
+
+  // Initialize speech recognition
+  useEffect(() => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = language === 'english' ? 'en-US' : language;
+      
+      recognition.onresult = (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0])
+          .map(result => result.transcript)
+          .join('');
+        
+        setPrompt(transcript);
+      };
+      
+      recognition.onerror = (event: any) => {
+        console.error('Speech recognition error', event.error);
+        toast.error(`Speech recognition error: ${event.error}`);
+        setIsListening(false);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+      
+      setSpeechRecognition(recognition);
+    } else {
+      toast.error("Speech recognition is not supported in your browser");
+    }
+  }, [language]);
+
+  const toggleListening = () => {
+    if (!speechRecognition) {
+      toast.error("Speech recognition is not supported in your browser");
+      return;
+    }
+
+    if (isListening) {
+      speechRecognition.stop();
+      setIsListening(false);
+    } else {
+      speechRecognition.start();
+      setIsListening(true);
+      toast.info("Listening for your prompt...");
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,12 +96,8 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
     const durationValue = duration === 'custom' ? parseInt(customDuration) : parseInt(duration);
     
     if (durationValue > 11) {
-      toast.info("This duration requires you to login", {
-        description: "Please login to use clips longer than 11 minutes.",
-        action: {
-          label: "Login",
-          onClick: () => navigate('/login')
-        }
+      toast.error("Clips longer than 11 minutes are not available", {
+        description: "Please select a duration of 11 minutes or less."
       });
       return;
     }
@@ -92,9 +138,21 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
       </div>
       
       <div>
-        <label htmlFor="prompt" className="block text-sm font-medium text-gray-300 mb-1">
-          What are you looking for?
-        </label>
+        <div className="flex justify-between items-center mb-1">
+          <label htmlFor="prompt" className="block text-sm font-medium text-gray-300">
+            What are you looking for?
+          </label>
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            onClick={toggleListening}
+            className={`rounded-full border-gray-600 ${isListening ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10 text-gray-300 hover:text-primary'}`}
+          >
+            {isListening ? <MicOff className="w-4 h-4 mr-1" /> : <Mic className="w-4 h-4 mr-1" />}
+            {isListening ? 'Stop' : 'Voice'}
+          </Button>
+        </div>
         <Textarea
           id="prompt"
           placeholder="E.g., Find a clip where they talk about artificial intelligence and its impact on jobs"
@@ -142,6 +200,16 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
               <SelectItem value="thai">Thai (ไทย)</SelectItem>
               <SelectItem value="indonesian">Indonesian (Bahasa Indonesia)</SelectItem>
               <SelectItem value="greek">Greek (Ελληνικά)</SelectItem>
+              <SelectItem value="bengali">Bengali (বাংলা)</SelectItem>
+              <SelectItem value="ukrainian">Ukrainian (Українська)</SelectItem>
+              <SelectItem value="malay">Malay (Bahasa Melayu)</SelectItem>
+              <SelectItem value="tamil">Tamil (தமிழ்)</SelectItem>
+              <SelectItem value="urdu">Urdu (اردو)</SelectItem>
+              <SelectItem value="marathi">Marathi (मराठी)</SelectItem>
+              <SelectItem value="telugu">Telugu (తెలుగు)</SelectItem>
+              <SelectItem value="persian">Persian (فارسی)</SelectItem>
+              <SelectItem value="swahili">Swahili (Kiswahili)</SelectItem>
+              <SelectItem value="hebrew">Hebrew (עִבְרִית)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -150,8 +218,7 @@ const ClipForm: React.FC<ClipFormProps> = ({ onGenerateClip }) => {
       <div className="text-xs text-amber-400 bg-amber-950/30 p-3 rounded-lg flex items-start">
         <AlertCircle className="w-4 h-4 mr-2 mt-0.5 shrink-0" />
         <span>
-          Free access allows up to 11 minutes of content. For longer clips, 
-          please <a href="/login" className="text-primary underline">login</a>.
+          Free access allows up to 11 minutes of content.
         </span>
       </div>
       

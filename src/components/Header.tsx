@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -15,6 +15,11 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
         <Link to="/" className="flex items-center group">
           <div className="flex items-center transition-transform duration-300 group-hover:scale-105">
+            <img 
+              src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f4a6496a18fa65420937d2709390e6314d613420_image.png" 
+              alt="PodBite Logo" 
+              className="h-7 mr-2" 
+            />
             <h1 className="text-2xl font-bold">
               Pod<span className="text-primary">Bite</span>
             </h1>

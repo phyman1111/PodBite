@@ -143,6 +143,15 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
 }
 
 @keyframes fade-in {
@@ -153,4 +162,3 @@
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
 }
-

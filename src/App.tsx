@@ -12,7 +12,6 @@ import HelpPage from "./pages/Help";
 import TermsPage from "./pages/Terms";
 import PrivacyPage from "./pages/Privacy";
 import ContactPage from "./pages/Contact";
-import LoginPage from "./pages/Login";
 
 // Initialize the query client outside the component
 const queryClient = new QueryClient();
@@ -32,7 +31,7 @@ const Analytics = () => {
     // Track initial page load
     trackPageView();
     
-    // Track subsequent navigation
+    // Listen for location changes
     const handleRouteChange = () => {
       trackPageView();
     };
@@ -65,7 +64,6 @@ const App = () => {
                 <Route path="/terms" element={<TermsPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/contact" element={<ContactPage />} />
-                <Route path="/login" element={<LoginPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
